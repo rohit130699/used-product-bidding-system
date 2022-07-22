@@ -1,0 +1,228 @@
+<html>
+    <head>
+        <title>Registration</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style type="text/css">
+            body{
+                background-image: url(image/img25.jpg);
+                background-size: cover;
+                background-attachment: fixed;
+                background-position: bottom;
+				background-repeat:no-repeat;
+                font-family: sans-serif;
+            }
+            button{
+                border: none;
+                outline: none;
+                height: 40px;
+                background: green;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                width: 40%;
+                border-radius: 20px;
+             }
+             button:hover{
+                cursor: pointer;
+                background: gray;
+                color: black;
+            }
+			#i1{
+			width: 45%;
+			background:blue;
+			}
+			#i1:hover{
+			 background: gray;
+			}
+            .box{
+                width: 380px;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                color: white;
+				z-index: 1;
+                top: 0;
+                left: 0;
+                position: fixed;
+                box-sizing: border-box;
+                padding: 20px 30px;
+                margin: auto;
+                font-size: 20px;
+            }
+            h1{
+                color: white;
+                margin: 0;
+                padding: 0 0 15px;
+                text-align: center;
+                font-size: 22px;               
+            }
+            .box p{
+                margin: 0;
+                padding: 0;
+                color: white;
+                font-weight: bold;
+				text-align: center;
+            }
+            .box input[type="text"],input[type="password"],input[type="email"]{
+                width: 80%;
+                float: center;
+                margin-bottom: 9px;
+				margin-top:9px;
+				text-align:center;
+                border:none;
+                border-bottom:1px solid white;
+                background: transparent;
+                outline: none;
+                height: 17px;
+                color: white;
+                font-size: 16px;
+            }
+            .box input[type="radio"]{
+             margin-bottom: 9px; 
+			 margin-top:9px;
+            }
+            .box select{
+                border:none;
+                border-bottom:1px solid white;
+                background: transparent;
+                outline: none;
+                height: 20px;
+                color: white;
+                font-size: 16px;
+                width: 80%;
+                background-color: rgba(0,0,0,0.5);
+                font-weight: bold;
+                float: center;
+				margin-bottom: 9px; 
+			    margin-top:9px;
+				text-align-last:center;
+            }
+            .box input[type="submit"]{
+                border: none;
+                outline: none;
+                height: 40px;
+                background: red;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                border-radius: 20px;
+                width:45%;
+				margin-top:10px;
+                margin-bottom: 10px;
+            }
+            .box input[type="submit"]:hover{
+                cursor: pointer;
+                background: gray;
+                color: black;
+            }
+			::placeholder{
+			color:black;
+			}
+			:-ms-input-placeholder{
+			color:black;
+			}
+			::-ms-input-placeholder{
+			color:black;
+			}
+        </style>
+        <script type="text/javascript">
+            function sign_test(){
+            var phn=document.forms["f1"]["c_no"];
+            var age=document.forms["f1"]["age"];
+            var psw=document.forms["f1"]["pass"];
+            var cpsw=document.forms["f1"]["cpass"];
+            var fname=document.forms["f1"]["fname"];
+            var lname=document.forms["f1"]["lname"];
+            var type=document.forms["f1"]["type"];
+            var rm = /^((?!(0))[0-9]{10})$/;
+            var rg=/^[a-zA-Z]{3,}$/;
+             if(!fname.value.match(rg)){
+                alert("Enter Proper Firstname");
+                fname.value="";
+               return false;
+            }
+            if(!lname.value.match(rg)){
+                alert("Enter Proper Lastname");
+                lname.value="";
+               return false;
+            }
+            if(type.selectedIndex < 1){
+                alert("Please select the usertype:");
+               return false;
+            }
+
+            if(!phn.value.match(rm)){
+                alert("Enter valid phone number");
+                phn.value="";
+               return false;
+            }
+            var ag = /^\d{2,}$/;
+            if(!age.value.match(ag)){
+                alert("Enter valid age");
+                age.value="";
+               return false;
+            }
+            if(age.value < 18 || age.value > 99){
+               alert("Enter age between 18 and 99");
+               age.value="";
+               return false; 
+            }
+            if(psw.value !== cpsw.value){
+               alert("Confirm password does not matches with Password");
+               psw.value="";
+               cpsw.value="";
+               return false; 
+            }
+                       return true;
+        }
+		function reset(){	
+		fname.value="";
+		lname.value="";
+		type.value="";
+		gmail.value="";
+		c_no.value="";
+		age.value="";
+		uname.value="";
+		pass.value="";
+		cpass.value="";
+		s1.checked=false;
+		}
+        </script>
+    </head>
+    <body>
+        <div class="box">
+            <h1><u>SIGNUP HERE</u></h1>
+            <form action="registration.php" name="f1" onsubmit="return sign_test()" method="post">
+                <p>FIRSTNAME  :<br>
+                    <input type="text" name="fname" placeholder="ENTER FIRSTNAME" required></p>
+                <p>LASTNAME   :<br>
+                <input type="text" name="lname" placeholder="ENTER LASTNAME" required></p>
+                <p>USERTYPE   :<br>
+                    <select name="type">
+                <option value="">SELECT FROM HERE</option>
+                 <option value="bid">BIDDER</option>
+                 <option value="sell">SELLER</option>
+                </select>
+                </p>
+                <p>G-MAIL   :<br>
+                 <input type="email" name="gmail" placeholder="ENTER G-MAIL" required></p>
+                <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GENDER   :<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="s1" value="male" required>MALE&nbsp;&nbsp;
+                <input type="radio" name="s1" value="female" required>FEMALE</b>
+                <p>CONTACT-NO   :<br>
+                 <input type="text" name="c_no" placeholder="ENTER CONTACT NUMBER" required></p>
+                <p>AGE   :<br>
+                 <input type="text" name="age" placeholder="ENTER AGE" required></p>
+                <p>USERNAME   :<br>
+                 <input type="text" name="uname" placeholder="ENTER USERNAME" required></p>
+                 <p>PASSWORD   :<br>
+                 <input type="password" name="pass" placeholder="ENTER PASSWORD" required></p>
+                 <p>CONFIRM PASSWORD   :<br>
+                 <input type="password" name="cpass" placeholder="ENTER CONFIRM PASSWORD" required></p>
+                 <input type="submit" value="SIGNUP" name="sub" onclick="submit">&nbsp;&nbsp;&nbsp;&nbsp;
+				 <button  type="button" id="i1" onclick="reset()">RESET</button>
+                 <center><button  type="button" id="b1" onclick="window.location='index.html'">BACK</button></center>
+            </form>
+        </div>
+    </body>
+</html>

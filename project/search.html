@@ -1,0 +1,236 @@
+<html>
+    <head>
+        <title>Search Product</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+             body{
+                margin: 0;
+                padding: 0;
+                background-color:pink;
+                font-family: sans-serif;
+            }
+            button{
+                border: none;
+                outline: none;
+                height: 40px;
+                background: green;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                width: 40%;
+                border-radius: 5%;
+             }
+             button:hover{
+                cursor: pointer;
+                background: gray;
+                color: black;
+            }
+            .box{
+                width: 380px;
+                height: 340px;
+                background:rgba(0,0,0,0.5);
+                color: white;
+                top: 45%;
+                left: 50%;
+                position: absolute;
+                transform: translate(-50%,-50%);
+                box-sizing: border-box;
+                padding: 30px 30px;
+                margin: auto;
+                font-size: 20px;
+            } 
+             h1{
+                color: white;
+                margin: 0;
+                padding: 0 0 20px;
+                text-align: center;
+                font-size: 22px;
+                
+            }
+            p{
+                margin: 0;
+                padding: 0;
+                color: white;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+            .box select{
+                border:none;
+                background: transparent;
+                outline: none;
+                height: 40px;
+                color: white;
+                font-size: 16px;
+                width: 85%;
+                margin-bottom: 20px;
+                text-align: center;
+                background-color: rgba(0,0,0,0.5);
+                font-weight: bold;
+            }
+            #sect{
+                height: 60px;
+                width: 100%;
+            }
+            #b1{
+                width: 30%;
+            }
+            .box input[type="submit"]{
+                border: none;
+                outline: none;
+                height: 40px;
+                background: #1034a6;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                width: 45%;
+                border-radius: 5%;
+                margin-top: 30px;
+            }
+             .box input[type="submit"]:hover{
+                cursor: pointer;
+                background: gray;
+                color: black;
+            }
+        </style>
+        <script>
+        function sel()
+        {
+         var sel1=document.forms["f1"]["type"];
+         var lap=document.forms["f1"]["LAPTOP"]; 
+         var desk=document.forms["f1"]["DESKTOP"];
+         var pd=document.forms["f1"]["PENDRIVE"];
+         var cam=document.forms["f1"]["CAMERA"];
+         var mob=document.forms["f1"]["MOBILE"];
+         var opt = sel1.options[sel1.selectedIndex];
+         if(opt.text === "LAPTOP COMPUTER"){
+             lap.style.display="inline";
+             desk.style.display="none";
+             pd.style.display="none";
+             cam.style.display="none";
+             mob.style.display="none";
+         }
+         else if(opt.text === "DESKTOP COMPUTER"){
+             lap.style.display="none";
+             desk.style.display="inline";
+             pd.style.display="none";
+             cam.style.display="none";
+             mob.style.display="none";
+         }
+         else if(opt.text === "PENDRIVE"){
+             lap.style.display="none";
+             desk.style.display="none";
+             pd.style.display="inline";
+             cam.style.display="none";
+             mob.style.display="none";
+         }
+         else if(opt.text === "CAMERA"){
+             lap.style.display="none";
+             desk.style.display="none";
+             pd.style.display="none";
+             cam.style.display="inline";
+             mob.style.display="none";
+         }
+         else if(opt.text === "MOBILE PHONES"){
+             lap.style.display="none";
+             desk.style.display="none";
+             pd.style.display="none";
+             cam.style.display="none";
+             mob.style.display="inline";
+         }
+        }
+        function test(){
+            var sel1=document.forms["f1"]["type"];
+            var lap=document.forms["f1"]["LAPTOP"]; 
+            var desk=document.forms["f1"]["DESKTOP"];
+            var pd=document.forms["f1"]["PENDRIVE"];
+            var cam=document.forms["f1"]["CAMERA"];
+            var mob=document.forms["f1"]["MOBILE"];
+            if(sel1.selectedIndex < 1){
+               alert("Please select the product type.."); 
+               return false; 
+            }
+            if(sel1.selectedIndex >= 1){
+                if(opt.text === "LAPTOP COMPUTER"){
+                    if(lap.selectedIndex < 1){
+                       alert("Please select brand of Laptop Computer..."); 
+                       return false; }}
+                if(opt.text === "DESKTOP COMPUTER"){
+                    if(desk.selectedIndex < 1){
+                       alert("Please select a brand of Desktop Computer..."); 
+                       return false; }}        
+                if(opt.text === "PENDRIVE"){
+                    if(pd.selectedIndex < 1){
+                       alert("Please select a brand of Pendrive..."); 
+                       return false; }} 
+                if(opt.text === "CAMERA"){
+                    if(cam.selectedIndex < 1){
+                       alert("Please select a brand of Camera..."); 
+                       return false; }}
+                 if(opt.text === "MOBILE PHONES"){
+                    if(mob.selectedIndex < 1){
+                       alert("Please select a brand of Mobile Phone..."); 
+                       return false; }}       
+            } 
+            return true;
+        }
+       </script>
+    </head>
+    <body>
+        <div class="box">
+        <form action="bidding.php" name="f1" method="post" onsubmit="return test()">
+        <center>     
+        SELECT PRODUCT CATEGORY<br><br><select name="type" onclick="sel()">
+                <option value="">SELECT PRODUCT CATEGORY</option>
+                 <option value="LAPTOP">LAPTOP COMPUTER</option>
+                 <option value="DESKTOP">DESKTOP COMPUTER</option>
+                 <option value="PENDRIVE">PENDRIVE</option>
+                 <option value="CAMERA">CAMERA</option>
+                 <option value="MOBILE">MOBILE PHONES</option>
+        </select><br>
+		SELECT PRODUCT BRAND<br><br>
+		<div id="sect">
+        <select name="LAPTOP" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="ACER">ACER</option>
+                 <option value="HP">HP</option>
+                 <option value="LENOVO">LENOVO</option>
+                 <option value="DELL">DELL</option>
+                 <option value="APPLE">APPLE</option>
+                </select>
+          <select name="DESKTOP" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="ACER">ACER</option>
+                 <option value="HP">HP</option>
+                 <option value="LENOVO">LENOVO</option>
+                 <option value="DELL">DELL</option>
+                 <option value="APPLE">APPLE</option>
+                </select>      
+         <select name="PENDRIVE" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="SAMSUNG">SAMSUNG</option>
+                 <option value="SANDISK">SANDISK</option>
+                 <option value="SONY">SONY</option>
+                 <option value="APRICORN">APRICORN</option>
+                </select>
+         <select name="CAMERA" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="CANON">CANON</option>
+                 <option value="NIKON">NIKON</option>
+                 <option value="PENTAX">PENTAX</option>
+                 <option value="SONY">SONY</option>
+                </select>
+         <select name="MOBILE" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="REDMI">REDMI</option>
+                 <option value="OPPO">OPPO</option>
+                 <option value="VIVO">VIVO</option>
+                 <option value="APPLE">APPLE</option>
+                 <option value="SAMSUNG">SAMSUNG</option>
+                </select></div>
+        </center>
+        <center><input type="submit" value="SEARCH" onclick="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button  type="button" id="b1" onclick="window.location='bidder.html'">BACK</button></center>
+        </form></div>
+    </body>
+</html>

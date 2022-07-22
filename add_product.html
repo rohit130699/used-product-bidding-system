@@ -1,0 +1,401 @@
+
+<html>
+    <head>
+        <title>Add Product</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="js/jquery.datetimepicker.min.css">
+        <style>
+             body{
+                margin: 0;
+                padding: 0;
+                background-color:bisque;
+                font-family: sans-serif;
+            }
+			button{
+                border: none;
+                outline: none;
+                height: 40px;
+                background: green;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                width: 10%;
+                border-radius: 20px;
+             }
+             button:hover{
+                cursor: pointer;
+                background: gray;
+                color: black;
+            }
+			 #btn{
+                margin-bottom: 20px;
+				border-radius:4px;
+            }
+            .box{
+                width: 96%;
+                height: 1050px;
+                color: black;
+                top: 4%;
+                left: 2%;
+                position: absolute;
+                background-color:white;
+			    border-radius:5px;
+				font-weight:bold;
+                margin: auto;
+                font-size: 20px;
+				border-style:groove;
+				border-width:2px;
+				border-color:red;
+				margin-bottom:33px;
+            }
+			.box select{
+                border:none;
+                background: transparent;
+                text-align: center;
+                outline: none;
+                height: 40px;
+                color: white;
+                font-size: 16px;
+                width: 264px;
+                margin-bottom:20px;
+                background-color: rgba(0,0,0,0.5);
+                font-weight: bold;
+				text-align-last:center;
+            }
+			.box input[type="text"]{
+                border:none;
+                background: transparent;
+                outline: none;
+                height: 40px;
+                color: white;
+                font-size: 16px;
+				background-color: rgba(0,0,0,0.5);
+				width:264px;
+				font-weight: bold;
+				margin-bottom: 20px;
+				text-align:center;
+            }
+			.box textarea{
+                border:none;
+                background: transparent;
+                outline: none;
+                color: white;
+				margin-bottom:20px;
+                font-size: 16px;
+				background-color: rgba(0,0,0,0.5);
+				font-weight: bold;
+				margin-top: 20px;
+				text-align:center;
+            }
+			.box input[type="date"]{
+			    border:none;
+                background: transparent;
+                outline: none;
+                height: 40px;
+                color: white;
+                font-size: 16px;
+				background-color: rgba(0,0,0,0.5);
+				width:264px;
+				font-weight: bold;
+				margin-bottom: 20px;
+				text-align:center;
+			}
+			#sect{
+			   height:37px;
+			   left:50%;
+			}
+			 .box input[type="submit"]{
+                border: none;
+                outline: none;
+                height: 40px;
+                background: blue;
+                color: white;
+                font-weight: bold;
+                font-size: 20px;
+                border-radius: 20px;
+                width:10%;
+                margin-bottom: 20px;
+            }
+            .box input[type="submit"]:hover{
+                cursor: pointer;
+                background: gray;
+                color: black;
+            }
+			::placeholder{
+			color:white;
+			}
+			:-ms-input-placeholder{
+			color:white;
+			}
+			::-ms-input-placeholder{
+			color:white;
+			}
+        </style>
+<script src="js/jquery.js"></script>
+<script src="js/jquery.datetimepicker.full.js"></script>
+<script>
+		$(document).ready(function(){
+		$("#start").datetimepicker({step:1});
+		$("#end").datetimepicker({step:1});
+		});
+		function sel()
+        {
+         var sel1=document.forms["f1"]["type"];
+         var lap=document.forms["f1"]["LAPTOP"]; 
+         var desk=document.forms["f1"]["DESKTOP"];
+         var pd=document.forms["f1"]["PENDRIVE"];
+         var cam=document.forms["f1"]["CAMERA"];
+         var mob=document.forms["f1"]["MOBILE"];
+         var opt = sel1.options[sel1.selectedIndex];
+         if(opt.text === "LAPTOP COMPUTER"){
+             lap.style.display="inline";
+             desk.style.display="none";
+             pd.style.display="none";
+             cam.style.display="none";
+             mob.style.display="none";
+         }
+         else if(opt.text === "DESKTOP COMPUTER"){
+             lap.style.display="none";
+             desk.style.display="inline";
+             pd.style.display="none";
+             cam.style.display="none";
+             mob.style.display="none";
+         }
+         else if(opt.text === "PENDRIVE"){
+             lap.style.display="none";
+             desk.style.display="none";
+             pd.style.display="inline";
+             cam.style.display="none";
+             mob.style.display="none";
+         }
+         else if(opt.text === "CAMERA"){
+             lap.style.display="none";
+             desk.style.display="none";
+             pd.style.display="none";
+             cam.style.display="inline";
+             mob.style.display="none";
+         }
+         else if(opt.text === "MOBILE PHONES"){
+             lap.style.display="none";
+             desk.style.display="none";
+             pd.style.display="none";
+             cam.style.display="none";
+             mob.style.display="inline";
+         }
+        }
+        function previewImages() {
+		var preview = document.querySelector('#preview');
+		var uploadImg = document.getElementById('files');
+		preview.innerHTML="";
+		if (this.files.length > 4){
+			uploadImg.value = "";
+			return alert(" You can't upload more than 4 images...");
+		}
+		else{
+			[].forEach.call(this.files, readAndPreview);
+		}} 
+		function readAndPreview(file) {
+			if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+				alert(file.name+" is not an image file");
+			}
+			if(file.size > 300000){
+				alert(file.name+" has size more than 300KB.Maximum size to be accepted is 300KB");
+			}
+				var reader = new FileReader(); 
+				reader.addEventListener("load", function() {
+				var image = new Image();
+				image.height = 100;
+				image.width = 120;
+				image.title  = file.name;
+				image.src    = this.result;
+				preview.appendChild(image);
+				preview.appendChild(document.createTextNode(" "));
+				});   
+				reader.readAsDataURL(file);   
+		}
+		function test(){
+			var title=document.forms["f1"]["title"];
+            var sel1=document.forms["f1"]["type"];
+            var lap=document.forms["f1"]["LAPTOP"]; 
+            var desk=document.forms["f1"]["DESKTOP"];
+            var pd=document.forms["f1"]["PENDRIVE"];
+            var cam=document.forms["f1"]["CAMERA"];
+            var mob=document.forms["f1"]["MOBILE"];
+			var upc=document.forms["f1"]["upc"];
+			var mpn=document.forms["f1"]["mpn"];
+            var file=document.forms["f1"]["files[]"];
+			var descr=document.forms["f1"]["descr"];
+			var price=document.forms["f1"]["bsprice"];
+			var st=document.forms["f1"]["start"];
+			var en=document.forms["f1"]["end"];
+            var opt = sel1.options[sel1.selectedIndex];
+			var start=new Date($('input[name="start"]').val());
+			var end=new Date($('input[name="end"]').val());
+			var today=new Date();
+			var d=end.getTime()-start.getTime();
+			var diff = d/(1000*3600*24);
+            var rg=/^[0-9]+(\.[0-9]{1,2})?$/;
+			var reg=/^\d{12}$/;
+			var regex=/^[-_A-Za-z\d]{6,70}$/;
+			if(title.value.length > 65){
+			   alert("Please enter title with size less or equal to 65..."); 
+			   title.value="";
+               return false;
+			}
+            if(sel1.selectedIndex < 1){
+               alert("Please select the product type.."); 
+               return false; 
+            }
+            if(sel1.selectedIndex >= 1){
+                if(opt.text === "LAPTOP COMPUTER"){
+                    if(lap.selectedIndex < 1){
+                       alert("Please select brand of Laptop Computer..."); 
+                       return false; }}
+                if(opt.text === "DESKTOP COMPUTER"){
+                    if(desk.selectedIndex < 1){
+                       alert("Please select a brand of Desktop Computer..."); 
+                       return false; }}        
+                if(opt.text === "PENDRIVE"){
+                    if(pd.selectedIndex < 1){
+                       alert("Please select a brand of Pendrive..."); 
+                       return false; }} 
+                if(opt.text === "CAMERA"){
+                    if(cam.selectedIndex < 1){
+                       alert("Please select a brand of Camera..."); 
+                       return false; }}
+                 if(opt.text === "MOBILE PHONES"){
+                    if(mob.selectedIndex < 1){
+                       alert("Please select a brand of Mobile Phone..."); 
+                       return false; }}       
+            }
+			if(!upc.value.match(reg)){
+                alert("Enter valid UPC");
+                upc.value="";
+               return false;
+            }
+			if(!mpn.value.match(regex)){
+                alert("Enter valid MPN");
+                mpn.value="";
+               return false;
+            }
+			if(file.value === ""){
+               alert("Please enter some image..."); 
+               return false;
+             }
+			for (var i = 0; i < file.files.length; i++) {
+				var f = file.files[i];
+				if (!/\.(jpe?g|png|gif)$/i.test(f.name)) {
+					alert(f.name+" is not an image file,Please change it...");
+					file.value = "";
+					return false;
+				}
+				else if(f.size > 300000){
+					alert(f.size+" has size more than 300KB.Maximum size to be accepted is 300KB,Please change it...");
+					file.value = "";
+					return false;
+				}
+				}
+		    if(descr.value.length > 1000){
+			   alert("Only 1000 charcters are allowed for description..."); 
+               return false;
+			}
+            if(!price.value.match(rg)){
+                alert("Enter valid Price");
+                price.value="";
+               return false;
+            }
+			if(today.getTime() > start.getTime()){
+			alert("Start time can't be a Past....");
+			st.value="";
+			return false;
+			}
+			if(today.getTime() > end.getTime()){
+			alert("End time can't be a Past....");
+			en.value="";
+			return false;
+			}
+			if(start.getTime() > end.getTime()){
+			alert("Start time can't be greater than End time....");
+			return false;
+			}
+			if(diff > 30){
+			alert("Auction time can't be more than 30 days....");
+			return false;
+			}
+            return true;
+        }
+		</script>
+    </head>
+    <body>
+	    <form action="list.php" name="f1" method="post" enctype="multipart/form-data" onsubmit="return test()">
+        <div class="box">
+		<center><font color="blue"><u><h3>ENTER PRODUCT DETAILS</h3></u></font></center>		
+		<center>
+		&emsp;&emsp;&emsp;&emsp;ENTER TITLE:&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;&ensp;&nbsp;<input type="text" name="title" placeholder="ENTER TITLE" required><br>
+		SELECT PRODUCT CATEGORY:&nbsp;&nbsp;&nbsp;<select name="type" onclick="sel()">
+                <option value="">SELECT PRODUCT CATEGORY</option>
+                 <option value="LAPTOP">LAPTOP COMPUTER</option>
+                 <option value="DESKTOP">DESKTOP COMPUTER</option>
+                 <option value="PENDRIVE">PENDRIVE</option>
+                 <option value="CAMERA">CAMERA</option>
+                 <option value="MOBILE">MOBILE PHONES</option>
+        </select><br></center><div id="sect">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+		SELECT PRODUCT BRAND:&ensp;&ensp;&ensp;&ensp;
+        <select name="LAPTOP" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="ACER">ACER</option>
+                 <option value="HP">HP</option>
+                 <option value="LENOVO">LENOVO</option>
+                 <option value="DELL">DELL</option>
+                 <option value="APPLE">APPLE</option>
+                </select>
+          <select name="DESKTOP" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="ACER">ACER</option>
+                 <option value="HP">HP</option>
+                 <option value="LENOVO">LENOVO</option>
+                 <option value="DELL">DELL</option>
+                 <option value="APPLE">APPLE</option>
+                </select>      
+         <select name="PENDRIVE" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="SAMSUNG">SAMSUNG</option>
+                 <option value="SANDISK">SANDISK</option>
+                 <option value="SONY">SONY</option>
+                 <option value="APRICORN">APRICORN</option>
+                </select>
+         <select name="CAMERA" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="CANON">CANON</option>
+                 <option value="NIKON">NIKON</option>
+                 <option value="PENTAX">PENTAX</option>
+                 <option value="SONY">SONY</option>
+                </select>
+         <select name="MOBILE" style="display: none;">
+           <option value="" >SELECT BRAND</option>
+                 <option value="REDMI">REDMI</option>
+                 <option value="OPPO">OPPO</option>
+                 <option value="VIVO">VIVO</option>
+                 <option value="APPLE">APPLE</option>
+                 <option value="SAMSUNG">SAMSUNG</option>
+                </select></div><br>
+		<center>
+		&emsp;&emsp;&emsp;&emsp;ENTER UPC:&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<input type="text" name="upc" placeholder="ENTER UPC" required><br>
+		&emsp;&emsp;&emsp;&emsp;ENTER MPN:&emsp;&emsp;&emsp;&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;<input type="text" name="mpn" placeholder="ENTER MPN" required><br>
+		<div id="image">ADD IMAGES(max. upto 4 images)<br><br>
+		<div style = "height:100px" id="preview"></div><br>
+		<input id="files" accept="image/*" type="file" name="files[]" onchange="previewImages.call(this)" style="display:none" multiple>
+        <button type="button" onclick="document.getElementById('files').click();" id="btn">ADD IMAGES</button></div><br>
+		ENTER PRODUCT DESCRIPTION:<br>
+		<textarea name="descr" cols="70" rows="4" placeholder="ENTER PRODUCT DESCRIPTION LIKE MODEL NUMBER AND ANY OTHER INFORMATION FOR USER.." required></textarea><br>
+		&emsp;&emsp;&emsp;&emsp;ENTER BASE PRICE:&emsp;&emsp;<input type="text" name="bsprice" placeholder="ENTER BASE PRICE IN ₹" required><br>
+		ENTER BIDDING TIME:<br><br>
+		&emsp;&emsp;&emsp;&emsp;ENTER START TIME:&emsp;&emsp;<input type="text" id="start" name="start" placeholder="CLICK TO SELECT" required autocomplete="off"><br>
+		&emsp;&emsp;&emsp;&emsp;ENTER END TIME:&emsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;<input type="text" id="end" name="end" placeholder="CLICK TO SELECT" required autocomplete="off"><br>
+		<input type="submit" value="SUBMIT" onclick="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button  type="button" onclick="window.location='seller.html'">BACK</button>
+		</center>
+        </div>	
+		</form>
+    </body>
+</html>
